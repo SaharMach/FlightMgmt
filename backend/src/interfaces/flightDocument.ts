@@ -5,6 +5,6 @@ export interface flightDocument extends Document {
   takeoffAirport: string
   landingAirport: string
   status: 'hangar' | 'airborne' | 'malfunction'
-  takeoffTime: String
-  landingTime: String
+  takeoffTime: string
+  landingTime: string
 }

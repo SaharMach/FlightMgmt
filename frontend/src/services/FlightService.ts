@@ -9,4 +9,10 @@ export const FlightService = {
     console.log(res.data)
     return res.data;
   },
+
+  async updateFlight(id: string, flight: Partial<Flight>): Promise<Flight> {
+    const res = await axios.put<Flight>(`${BASE_URL}/${id}`, flight);
+    return res.data;
+  },
+
 };
