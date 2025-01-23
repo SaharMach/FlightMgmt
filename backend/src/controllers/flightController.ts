@@ -8,7 +8,8 @@ import {
 
 export const getFlights = async (req: Request, res: Response) => {
   try {
-    const flights = await fetchAllFlights();
+    const { query } = req.query;
+    const flights = await fetchAllFlights(query as string);
     console.log(flights);
     res.status(200).json(flights);
   } catch (err) {

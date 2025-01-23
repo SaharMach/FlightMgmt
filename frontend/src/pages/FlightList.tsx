@@ -3,8 +3,9 @@ import { observer } from "mobx-react-lite";
 import FlightStore from "../stores/FlightStore"
 import { Flight } from "types/Flight";
 import io from "socket.io-client";
+import FlightSearch from "../cmps/FlightSearch";
 
-function FlightList() {
+const FlightList = observer(() => {
   useEffect(() => {
     FlightStore.fetchFlights();
 
@@ -23,6 +24,7 @@ function FlightList() {
 
   return (
     <div className="flight-list">
+      <FlightSearch />
       {FlightStore.flights.map((flight) => (
         <div
           key={flight._id}
@@ -34,10 +36,11 @@ function FlightList() {
           <p>Landing Airport: {flight.landingAirport}</p>
           <p>Takeoff Time: {new Date(flight.takeoffTime).toLocaleString()}</p>
           <p>Landing Time: {new Date(flight.landingTime).toLocaleString()}</p>
+          <button className="delete-btn" onClick={() => FlightStore.deleteFlight(flight._id)}>X</button>
         </div>
       ))}
     </div>
   );
-}
+})
 
-export default observer(FlightList);
+export default FlightList;

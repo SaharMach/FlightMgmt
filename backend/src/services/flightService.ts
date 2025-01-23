@@ -1,7 +1,15 @@
 import { Flight } from "../models/flightModel";
 
-export const fetchAllFlights = async () => {
-  return await Flight.find();
+export const fetchAllFlights = async (query: string | undefined) => {
+  const filter: any = {};
+  if (query) {
+    filter.$or = [
+      {flightNumber: new RegExp(query, "i")},
+      {takeOffAirport: new RegExp(query, "i")},
+      {landingAirport: new RegExp(query, "i")}
+    ]
+  }
+  return await Flight.find(filter);
 };
 
 export const createNewFlight = async (flightData: any) => {

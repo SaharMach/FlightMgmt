@@ -4,8 +4,8 @@ import { Flight } from "../types/Flight";
 const BASE_URL = "http://localhost:3000/api/flight";
 
 export const FlightService = {
-  async fetchFlights(): Promise<Flight[]> {
-    const res = await axios.get<Flight[]>(BASE_URL);
+  async fetchFlights(query: string = ""): Promise<Flight[]> {
+    const res = await axios.get<Flight[]>(`${BASE_URL}?query=${query}`);
     console.log(res.data)
     return res.data;
   },
@@ -15,4 +15,7 @@ export const FlightService = {
     return res.data;
   },
 
+  async deleteFlight(id: string): Promise<void>{
+    await axios.delete(`${BASE_URL}/${id}`)
+  }
 };

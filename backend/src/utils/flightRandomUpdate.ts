@@ -49,5 +49,5 @@ export const flightRandomUpdate = (io: Server) => {
       console.log(randomFlight);
       
     }
-  }, 300);
+  }, 2000);
 };
