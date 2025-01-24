@@ -1,16 +1,15 @@
 import { Server } from 'socket.io';
-import { Flight } from '../models/flightModel';
+import { Flight } from '../models/FlightModel';
 
 const CODES: string[] = ["JFK", "LAX", "LHR", "CDG", "DXB","HND", "ORD","FRA", "SIN", "ICN", "AMS","TLV"];
 
-export const flightRandomUpdate = (io: Server) => {
+export const FlightRandomUpdate = (io: Server) => {
   setInterval(async () => {
     const flights = await Flight.find();
     if (flights.length > 0) {
+      
       const randomFlight = flights[Math.floor(Math.random() * flights.length)];
-
       const updateType = Math.floor(Math.random() * 3);
-      console.log("updated type", updateType);
       
       switch (updateType) {
         case 0:
@@ -46,8 +45,6 @@ export const flightRandomUpdate = (io: Server) => {
 
       await randomFlight.save();
       io.emit('flightUpdate', randomFlight);
-      console.log(randomFlight);
-      
     }
   }, 2000);
 };

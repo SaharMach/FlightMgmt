@@ -1,11 +1,12 @@
-import { Flight } from "../models/flightModel";
+import { log } from "console";
+import { Flight } from "../models/FlightModel";
 
 export const fetchAllFlights = async (query: string | undefined) => {
   const filter: any = {};
   if (query) {
     filter.$or = [
       {flightNumber: new RegExp(query, "i")},
-      {takeOffAirport: new RegExp(query, "i")},
+      {takeoffAirport: new RegExp(query, "i")},
       {landingAirport: new RegExp(query, "i")}
     ]
   }

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import { flightDocument } from '../interfaces/flightDocument'
+import { FlightDocument } from '../interfaces/FlightDocument'
 
 const flightSchema: Schema = new Schema({
   flightNumber: { type: String, required: true },
@@ -10,4 +10,4 @@ const flightSchema: Schema = new Schema({
   landingTime: { type: String, required: true },
 }, {versionKey: false})
 
-export const Flight = mongoose.model<flightDocument>('Flight', flightSchema, 'flight');
+export const Flight = mongoose.model<FlightDocument>('Flight', flightSchema, 'flight');

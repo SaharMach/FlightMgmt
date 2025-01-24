@@ -4,9 +4,9 @@ import bodyParser from "body-parser"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import http from "http"
-import flightRoutes from "./routes/flightRoutes"
+import FlightRoutes from "./routes/FlightRoutes"
 import { Server } from 'socket.io';
-import { flightRandomUpdate } from "./utils/flightRandomUpdate"
+import { FlightRandomUpdate } from "./utils/FlightRandomUpdate"
 
 dotenv.config()
 
@@ -28,14 +28,14 @@ mongoose.connect(DB)
     .catch(err => console.error("Database connection error:", err))
 
 
-app.use(flightRoutes)
+app.use(FlightRoutes)
 
 const server = http.createServer(app)
 const io = new Server(server);
 
 io.on('connection', (socket) => {
     console.log('New client connected');
-    flightRandomUpdate(io);
+    FlightRandomUpdate(io);
     socket.on('disconnect', () => console.log('Client disconnected'));
   });
 server.listen(PORT, () => console.log(`Server running on port http://127.0.0.1:${PORT}`))

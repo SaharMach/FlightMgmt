@@ -4,7 +4,7 @@ import {
   createFlight,
   updateFlight,
   deleteFlight
-} from '../controllers/flightController';
+} from '../controllers/FlightController';
 
 const router = Router();
 

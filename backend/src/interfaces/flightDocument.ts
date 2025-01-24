@@ -1,6 +1,6 @@
 import { Date, Document } from 'mongoose'
 
-export interface flightDocument extends Document {
+export interface FlightDocument extends Document {
   flightNumber: string
   takeoffAirport: string
   landingAirport: string

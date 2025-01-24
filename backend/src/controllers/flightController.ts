@@ -4,13 +4,12 @@ import {
   createNewFlight,
   updateFlightById,
   deleteFlightById,
-} from "../services/flightService";
+} from "../services/FlightService";
 
 export const getFlights = async (req: Request, res: Response) => {
   try {
     const { query } = req.query;
     const flights = await fetchAllFlights(query as string);
-    console.log(flights);
     res.status(200).json(flights);
   } catch (err) {
     res.status(500).json({ err });
@@ -37,7 +36,6 @@ export const updateFlight = async (req: Request, res: Response) => {
       return;
     }
     res.status(200).json(updatedFlight);
-    console.log("updated successfully");
   } catch (err) {
     res.status(400).json({ err });
   }

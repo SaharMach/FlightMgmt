@@ -43,6 +43,17 @@ class FlightStore {
           console.log("Error deleting flight", err);
       }
     }
+
+    createFlight = async (flight: Partial<Flight>) => {
+      try {
+        const newFlight = await FlightService.createFlight(flight);
+        runInAction(() => {
+          this.flights.push(newFlight);
+        })
+      } catch (err) {
+        console.error("Error creating flight:", err);
+      }
+    };
   }
   
   export default new FlightStore();

@@ -17,5 +17,10 @@ export const FlightService = {
 
   async deleteFlight(id: string): Promise<void>{
     await axios.delete(`${BASE_URL}/${id}`)
-  }
+  },
+
+  async createFlight(flight: Partial<Flight>): Promise<Flight> {
+    const res = await axios.post<Flight>(BASE_URL, flight);
+    return res.data;
+  },
 };
