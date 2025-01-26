@@ -34,7 +34,6 @@ function FlightForm(props: { flight?: Flight; onClose?: () => void }) {
             toast.success("Flight updated")
         } else {
             await FlightStore.createFlight(formData as Flight);
-            toast.success("Flight created")
         }
         if (onClose) {
             onClose();
@@ -46,80 +45,98 @@ function FlightForm(props: { flight?: Flight; onClose?: () => void }) {
 
 
   return (
-    <form className="flight-form" onSubmit={handleSubmit}>
-      <h2>{flight ? "Edit Flight" : "Create Flight"}</h2>
+    <div className="flight-form-overlay">
+      <div className="flight-form-container">
+        <form className="flight-form" onSubmit={handleSubmit}>
+          <h2>{flight ? "Edit Flight" : "Create Flight"}</h2>
 
-      <div>
-        <label>Flight Number:</label>
-        <input
-          type="text"
-          name="flightNumber"
-          value={formData.flightNumber}
-          onChange={handleChange}
-          required
-        />
+          <div className="form-group">
+            <label htmlFor="flightNumber">Flight Number:</label>
+            <input
+              type="text"
+              id="flightNumber"
+              name="flightNumber"
+              value={formData.flightNumber}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="takeoffAirport">Takeoff Airport:</label>
+            <input
+              type="text"
+              id="takeoffAirport"
+              name="takeoffAirport"
+              value={formData.takeoffAirport}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="landingAirport">Landing Airport:</label>
+            <input
+              type="text"
+              id="landingAirport"
+              name="landingAirport"
+              value={formData.landingAirport}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="status">Status:</label>
+            <select
+              id="status"
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+            >
+              <option value="hangar">Hangar</option>
+              <option value="airborne">Airborne</option>
+              <option value="malfunction">Malfunction</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="takeoffTime">Takeoff Time:</label>
+            <input
+              type="datetime-local"
+              id="takeoffTime"
+              name="takeoffTime"
+              value={flight ? formatDateToInput(formData.takeoffTime) : formData.takeoffTime}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="landingTime">Landing Time:</label>
+            <input
+              type="datetime-local"
+              id="landingTime"
+              name="landingTime"
+              value={flight ? formatDateToInput(formData.landingTime) : formData.landingTime}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="button-group">
+            <button type="submit" className="btn">
+              {flight ? "Update Flight" : "Create Flight"}
+            </button>
+            {onClose && (
+              <button type="button" className="btn" onClick={onClose}>
+                Cancel
+              </button>
+            )}
+          </div>
+        </form>
       </div>
-
-      <div>
-        <label>Takeoff Airport:</label>
-        <input
-          type="text"
-          name="takeoffAirport"
-          value={formData.takeoffAirport}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div>
-        <label>Landing Airport:</label>
-        <input
-          type="text"
-          name="landingAirport"
-          value={formData.landingAirport}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div>
-        <label>Status:</label>
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-        >
-          <option value="hangar">Hangar</option>
-          <option value="airborne">Airborne</option>
-          <option value="malfunction">Malfunction</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Takeoff Time:</label>
-        <input
-          type="datetime-local"
-          name="takeoffTime"
-          value={flight ? formatDateToInput(formData.takeoffTime) : formData.takeoffTime}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div>
-        <label>Landing Time:</label>
-        <input
-          type="datetime-local"
-          name="landingTime"
-          value={flight ? formatDateToInput(formData.landingTime) : formData.landingTime}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <button type="submit">{flight ? "Update Flight" : "Create Flight"}</button>
-      {onClose && <button type="button" onClick={onClose}>Cancel</button>}
-    </form>
+    </div>
   );
 }
 

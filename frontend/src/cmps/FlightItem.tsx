@@ -13,8 +13,8 @@ const FlightItem = ({ flight, onEdit }: { flight: Flight; onEdit: (flight: Fligh
         <td>{new Date(flight.takeoffTime).toLocaleString()}</td>
         <td>{new Date(flight.landingTime).toLocaleString()}</td>
         <td className="actions">
-          <button className="edit-btn" onClick={() => onEdit(flight)}>Edit</button>
-          <button className="delete-btn" onClick={() => FlightStore.deleteFlight(flight._id)}>Delete</button>
+          <button className="btn" onClick={() => onEdit(flight)}>Edit</button>
+          <button className="delete btn" onClick={() => FlightStore.deleteFlight(flight._id)}>Delete</button>
         </td>
       </tr>
     )

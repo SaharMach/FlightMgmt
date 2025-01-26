@@ -40,7 +40,7 @@ const FlightList = observer(() => {
   return (
     <div className="flight-list">
       <FlightSearch />
-      <button className="create-btn" onClick={() => setIsCreating(true)}>Create</button>
+      <button className="btn" onClick={() => setIsCreating(true)}>Create</button>
       <table className="flights-table">
         <thead>
           <tr>
