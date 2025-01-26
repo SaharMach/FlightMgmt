@@ -32,7 +32,12 @@ mongoose.connect(DB)
 app.use(FlightRoutes)
 
 const server = http.createServer(app)
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+      origin: ['http://127.0.0.1:5173', 'http://localhost:5173', 'http://127.0.0.1:3000', 'http://localhost:3000', "https://flightmgmt.onrender.com"],
+      credentials: true,
+    },
+});
 
 io.on('connection', (socket: Socket) => {
     logger.info('New client connected');
