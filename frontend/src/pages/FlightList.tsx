@@ -6,6 +6,7 @@ import io from "socket.io-client";
 import FlightSearch from "../cmps/FlightSearch";
 import FlightForm from "../cmps/FlightForm";
 import FlightItem from "../cmps/FlightItem";
+import { BASE_URL } from "services/FlightService";
 
 const FlightList = observer(() => {
   const [editingFlight, setEditingFlight] = useState<Flight | null>(null);
@@ -14,7 +15,7 @@ const FlightList = observer(() => {
   useEffect(() => {
     FlightStore.fetchFlights();
 
-    const socket = io("http://localhost:3000", { 
+    const socket = io(BASE_URL, { 
       transports: ['websocket'], 
     })
 

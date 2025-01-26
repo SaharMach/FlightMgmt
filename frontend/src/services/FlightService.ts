@@ -1,7 +1,8 @@
 import axios from "axios";
 import { Flight } from "../types/Flight";
 
-const BASE_URL = "http://localhost:3000/api/flight";
+export const BASE_URL = "https://flightmgmt-back.onrender.com/api/flight";
+// DEVELOPMENT ONLY - "http://localhost:3000/api/flight";
 
 export const FlightService = {
   async fetchFlights(query: string = ""): Promise<Flight[]> {

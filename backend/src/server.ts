@@ -15,7 +15,7 @@ const DB = process.env.MONGO_DB!
 
 const app = express()
 const corsOpts = {
-    origin:['http://127.0.0.1:5173', 'http://localhost:5173', 'http://127.0.0.1:3000', 'http://localhost:3000'],
+    origin:['http://127.0.0.1:5173', 'http://localhost:5173', 'http://127.0.0.1:3000', 'http://localhost:3000', "https://flightmgmt.onrender.com"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
