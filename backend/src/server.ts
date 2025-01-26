@@ -5,8 +5,9 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 import http from "http"
 import FlightRoutes from "./routes/FlightRoutes"
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import { FlightRandomUpdate } from "./utils/FlightRandomUpdate"
+import logger from "./utils/logger"
 
 dotenv.config()
 
@@ -24,8 +25,8 @@ app.use(cors(corsOpts))
 app.use(bodyParser.json())
 
 mongoose.connect(DB)
-    .then(() => console.log("Database connected"))
-    .catch(err => console.error("Database connection error:", err))
+    .then(() => logger.info("Database connected"))
+    .catch((err: Error) => logger.error("Database connection error:", err));
 
 
 app.use(FlightRoutes)
@@ -33,9 +34,9 @@ app.use(FlightRoutes)
 const server = http.createServer(app)
 const io = new Server(server);
 
-io.on('connection', (socket) => {
-    console.log('New client connected');
+io.on('connection', (socket: Socket) => {
+    logger.info('New client connected');
     FlightRandomUpdate(io);
-    socket.on('disconnect', () => console.log('Client disconnected'));
+    socket.on('disconnect', () => logger.info('Client disconnected'));
   });
-server.listen(PORT, () => console.log(`Server running on port http://127.0.0.1:${PORT}`))
+server.listen(PORT, () => logger.info(`Server running on port http://127.0.0.1:${PORT}`))

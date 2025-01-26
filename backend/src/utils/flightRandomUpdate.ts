@@ -1,6 +1,6 @@
 import { Server } from 'socket.io';
 import { Flight } from '../models/FlightModel';
-
+import logger from './logger';
 const CODES: string[] = ["JFK", "LAX", "LHR", "CDG", "DXB","HND", "ORD","FRA", "SIN", "ICN", "AMS","TLV"];
 
 export const FlightRandomUpdate = (io: Server) => {
@@ -23,7 +23,7 @@ export const FlightRandomUpdate = (io: Server) => {
           const landingDate = new Date(randomFlight.landingTime);
 
           if (isNaN(takeoffDate.getTime()) || isNaN(landingDate.getTime())) {
-            console.error(`Invalid date format for flight ${randomFlight.flightNumber}. Skipping update.`);
+            logger.info(`Invalid date format for flight ${randomFlight.flightNumber}. Skipping update.`);
             break;
           }
 
@@ -38,7 +38,7 @@ export const FlightRandomUpdate = (io: Server) => {
           if(randomCode !== randomFlight.takeoffAirport){
             randomFlight.landingAirport = randomCode;
           } else {
-            console.log("same airport, cant update.");
+            logger.info("same airport, cant update.");
           }
           break;
       }

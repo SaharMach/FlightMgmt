@@ -1,4 +1,3 @@
-import { log } from "console";
 import { Flight } from "../models/FlightModel";
 
 export const fetchAllFlights = async (query: string | undefined) => {

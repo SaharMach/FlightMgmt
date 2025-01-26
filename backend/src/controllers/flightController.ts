@@ -51,7 +51,6 @@ export const deleteFlight = async (req: Request, res: Response) => {
       return;
     }
     res.status(200).json(deletedFlight);
-    console.log("deleted successfully");
   } catch (err) {
     res.status(400).json({ err });
   }
