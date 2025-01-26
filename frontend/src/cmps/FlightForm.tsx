@@ -28,10 +28,16 @@ function FlightForm(props: { flight?: Flight; onClose?: () => void }) {
     const takeoffDate = new Date(formData.takeoffTime);
     const landingDate = new Date(formData.landingTime);
     if (takeoffDate > landingDate) return toast.error("Invalid dates")
+    const exists = FlightStore.flights.some(existingFlight => existingFlight.flightNumber === formData.flightNumber);
+    if (exists) {
+      toast.error(`A flight named "${formData.flightNumber}" already exists!`);
+      return;
+    }
     try{
         if (flight) {
-            await FlightStore.updateFlight(flight._id, formData as Partial<Flight>);
-            toast.success("Flight updated")
+          
+          await FlightStore.updateFlight(flight._id, formData as Partial<Flight>);
+          toast.success("Flight updated")
         } else {
             await FlightStore.createFlight(formData as Flight);
         }

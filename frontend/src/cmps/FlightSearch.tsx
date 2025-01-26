@@ -16,10 +16,13 @@ const FlightSearch = observer(() => {
         <input 
             className="text-input"
             type="text" 
-            placeholder="Search by..."
+            placeholder="Search by flight num / takeoff / landing airport"
             value={query}
             onChange={handleSearch}
         />
+      <span className="material-symbols-outlined">
+        search
+      </span>
     </section>
   )  
 })

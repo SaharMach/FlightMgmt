@@ -5,4 +5,30 @@
     color: #721c24;
     font-weight: bold;
   }
+
+  .edit {
+    background-color: #343a40;
+    color: white;
+  }
+
+  .actions {
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+    .delete {
+      all: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 20px;
+      top: 30%;
+      span {
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+      }
+    }
+  }
 }

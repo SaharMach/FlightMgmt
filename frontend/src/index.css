@@ -2,3 +2,4 @@
 @import './assets/pages/FlightList.scss';
 @import './assets/cmps/FlightItem.scss';
 @import './assets/cmps/FlightForm.scss';
+@import './assets/cmps/FlightSearch.scss';

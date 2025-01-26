@@ -39,8 +39,11 @@ const FlightList = observer(() => {
 
   return (
     <div className="flight-list">
-      <FlightSearch />
-      <button className="btn" onClick={() => setIsCreating(true)}>Create</button>
+      <section className="flight-list-header">
+        <FlightSearch />
+        <button className="create btn" onClick={() => setIsCreating(true)}>Create</button>
+
+      </section>
       <table className="flights-table">
         <thead>
           <tr>
@@ -61,6 +64,7 @@ const FlightList = observer(() => {
       </table>
       {isCreating && <FlightForm onClose={handleClose}/>}
       {editingFlight && <FlightForm flight={editingFlight} onClose={handleClose}/>}
+
     </div>
   );
 })

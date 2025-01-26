@@ -1,6 +1,8 @@
 
 * {
     box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
   }
 
 .btn {
@@ -10,8 +12,6 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #807e7e3b;
-    }
+    background-color: #343a40;
+    color: white;
 }
