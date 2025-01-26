@@ -46,5 +46,5 @@ export const FlightRandomUpdate = (io: Server) => {
       await randomFlight.save();
       io.emit('flightUpdate', randomFlight);
     }
-  }, 2000);
+  }, 300);
 };

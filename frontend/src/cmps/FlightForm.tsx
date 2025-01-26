@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FlightStore from "../stores/FlightStore";
 import { Flight } from "../types/Flight";
 import { formatDateToInput } from "../services/util.service";
+import toast from "react-hot-toast";
 
 function FlightForm(props: { flight?: Flight; onClose?: () => void }) {
   const { flight, onClose } = props;
@@ -24,11 +25,16 @@ function FlightForm(props: { flight?: Flight; onClose?: () => void }) {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    const takeoffDate = new Date(formData.takeoffTime);
+    const landingDate = new Date(formData.landingTime);
+    if (takeoffDate > landingDate) return toast.error("Invalid dates")
     try{
         if (flight) {
             await FlightStore.updateFlight(flight._id, formData as Partial<Flight>);
+            toast.success("Flight updated")
         } else {
             await FlightStore.createFlight(formData as Flight);
+            toast.success("Flight created")
         }
         if (onClose) {
             onClose();

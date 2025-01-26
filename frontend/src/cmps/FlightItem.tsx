@@ -5,19 +5,18 @@ import FlightStore from "../stores/FlightStore";
 const FlightItem = ({ flight, onEdit }: { flight: Flight; onEdit: (flight: Flight) => void }) => {
     
     return (
-        <div
-          key={flight._id}
-          className={`flight-item ${flight.status === "malfunction" ? "malfunction" : ""}`}
-        >
-          <p>Flight Number: {flight.flightNumber}</p>
-          <p>Status: {flight.status}</p>
-          <p>Takeoff Airport: {flight.takeoffAirport}</p>
-          <p>Landing Airport: {flight.landingAirport}</p>
-          <p>Takeoff Time: {new Date(flight.takeoffTime).toLocaleString()}</p>
-          <p>Landing Time: {new Date(flight.landingTime).toLocaleString()}</p>
-          <button onClick={() => onEdit(flight)}>Edit</button>
-          <button className="delete-btn" onClick={() => FlightStore.deleteFlight(flight._id)}>X</button>
-        </div>
+      <tr className={`flight-item ${flight.status === "malfunction" ? "malfunction" : ""}`}>
+        <td>{flight.flightNumber}</td>
+        <td>{flight.status}</td>
+        <td>{flight.takeoffAirport}</td>
+        <td>{flight.landingAirport}</td>
+        <td>{new Date(flight.takeoffTime).toLocaleString()}</td>
+        <td>{new Date(flight.landingTime).toLocaleString()}</td>
+        <td className="actions">
+          <button className="edit-btn" onClick={() => onEdit(flight)}>Edit</button>
+          <button className="delete-btn" onClick={() => FlightStore.deleteFlight(flight._id)}>Delete</button>
+        </td>
+      </tr>
     )
 }
 

@@ -40,12 +40,25 @@ const FlightList = observer(() => {
   return (
     <div className="flight-list">
       <FlightSearch />
-      <button onClick={() => setIsCreating(true)}>Create</button>
-      {FlightStore.flights.map((flight) => (
-        <section className="flight-list-con" key={flight._id}>
-          <FlightItem flight={flight} onEdit={handleEdit}/>
-        </section>
-      ))}
+      <button className="create-btn" onClick={() => setIsCreating(true)}>Create</button>
+      <table className="flights-table">
+        <thead>
+          <tr>
+            <th>Flight Number</th>
+            <th>Status</th>
+            <th>Takeoff Airport</th>
+            <th>Landing Airport</th>
+            <th>Takeoff Time</th>
+            <th>Landing Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {FlightStore.flights.map((flight) => (
+            <FlightItem key={flight._id} flight={flight} onEdit={handleEdit} />
+          ))}
+        </tbody>
+      </table>
       {isCreating && <FlightForm onClose={handleClose}/>}
       {editingFlight && <FlightForm flight={editingFlight} onClose={handleClose}/>}
     </div>

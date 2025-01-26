@@ -1,1 +1,3 @@
-@import './assets/base.css'
+@import './assets/base.scss';
+@import './assets/pages/FlightList.scss';
+@import './assets/cmps/FlightItem.scss';

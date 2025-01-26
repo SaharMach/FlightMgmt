@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { Flight } from "types/Flight";
 import { FlightService } from "../services/FlightService";
+import toast from "react-hot-toast";
 
 class FlightStore {
     flights: Flight[] = [];
@@ -39,6 +40,7 @@ class FlightStore {
         runInAction(() => {
           this.flights = this.flights.filter((f) => f._id !== id)
         })
+        toast.success("Flight deleted!")
       } catch (err) {
           console.log("Error deleting flight", err);
       }
@@ -50,6 +52,7 @@ class FlightStore {
         runInAction(() => {
           this.flights.push(newFlight);
         })
+        toast.success("Flight created!")
       } catch (err) {
         console.error("Error creating flight:", err);
       }
