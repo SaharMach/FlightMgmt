@@ -1,15 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import FlightList from "./pages/FlightList"
+import { Toaster } from "react-hot-toast";
 
 function App() {
     return (
-        <Router>
-            <div className="app">
+        <div className="app">
+            <Toaster />
+            <Router>
                 <Routes>
+                    <Route path="/" element={<FlightList/>} />
                 </Routes>
-            </div>
-        </Router>
+            </Router>
+        </div>
     );
 }
 

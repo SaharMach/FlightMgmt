@@ -1,0 +1,33 @@
+.text-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    position: relative;
+    span {
+      position: absolute;
+      left: 10px;
+      color: #a8a8a8;
+    }
+    .text-input {
+      width: 100%;
+      max-width: 600px;
+      padding: 12px 40px;
+      font-size: 16px;
+      border: 2px solid #a8a8a8;
+      border-radius: 8px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      
+      &::placeholder {
+        color: #adb5bd;
+        font-style: italic;
+      }
+  
+      &:focus {
+        border-color: #343a40;
+        box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+        outline: none;
+      }
+    }
+}
+  
